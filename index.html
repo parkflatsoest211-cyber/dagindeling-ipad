@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f8fb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Mijn dagindeling">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Mijn dagindeling</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#263247;background:#f7f8fb;font-synthesis:none}*{box-sizing:border-box}body{margin:0}main{max-width:800px;margin:auto;padding:clamp(12px,2vh,24px) clamp(12px,3vw,32px)}header{text-align:center;margin-bottom:clamp(8px,1.5vh,20px)}h1{font-size:clamp(27px,4vw,43px);margin:0 0 3px;font-weight:800}#day{font-size:clamp(16px,2.2vw,23px);color:#536175}#clock{font-variant-numeric:tabular-nums;font-weight:800;font-size:clamp(22px,3.7vw,37px);margin-top:2px}.schedule{display:grid;gap:clamp(5px,.8vh,11px)}.entry{position:relative;display:grid;grid-template-columns:minmax(76px,120px) minmax(40px,65px) 1fr auto;align-items:center;gap:clamp(6px,1.3vw,14px);padding:clamp(8px,1.1vh,13px) clamp(11px,1.9vw,18px);min-height:clamp(45px,6.35vh,66px);border-radius:14px;border:3px solid transparent;background:var(--bg)}.time{font-size:clamp(21px,3.7vw,33px);font-weight:850;font-variant-numeric:tabular-nums;color:var(--fg)}.emoji{font-size:clamp(25px,3.8vw,35px);text-align:center}.activity{font-size:clamp(21px,3.4vw,31px);font-weight:750;color:var(--fg)}.entry.active{border-color:var(--fg);box-shadow:0 0 0 2px #ffffff,0 4px 16px #2632472b;transform:scale(1.007)}.active .activity{font-weight:900}.now{display:none;background:var(--fg);color:white;padding:5px 9px;border-radius:9px;font-size:clamp(12px,1.7vw,16px);font-weight:800;white-space:nowrap}.active .now{display:block}.meal{--bg:#fff1bc;--fg:#765312}.drink{--bg:#eee0fa;--fg:#65358e}.nutrition{--bg:#daf2df;--fg:#27633d}.bed{--bg:#dcecfb;--fg:#24598a}.wake{--bg:#fae6d7;--fg:#8a4e25}footer{text-align:center;margin-top:clamp(10px,1.7vh,22px);padding:8px;color:#3c4d63;font-size:clamp(17px,2.3vw,23px);font-weight:650}footer strong{color:#213954}@media (max-width:480px){.entry{grid-template-columns:74px 35px 1fr auto;gap:5px;padding:7px 9px;border-width:2px}.time{font-size:21px}.emoji{font-size:24px}.activity{font-size:20px}.now{font-size:10px;padding:4px}.schedule{gap:5px}main{padding:10px 9px}footer{font-size:16px}}@media(max-height:740px){header{margin-bottom:6px}h1{font-size:28px}#day{font-size:16px}#clock{font-size:22px}.schedule{gap:4px}.entry{min-height:39px;padding:5px 10px}.time,.activity{font-size:21px}.emoji{font-size:22px}footer{margin-top:4px;font-size:16px;padding:4px}}@media(prefers-reduced-motion:no-preference){.entry{transition:border-color .2s,box-shadow .2s}}
+</style>
+</head>
+<body><main><header><h1>🌷 Mijn dagindeling</h1><div id="day"></div><div id="clock" aria-label="Huidige tijd"></div></header><div class="schedule" id="schedule">
+<div class="entry wake" data-start="08:00"><span class="time">8:00</span><span class="emoji">☀️</span><span class="activity">Opstaan</span><span class="now">NU</span></div>
+<div class="entry meal" data-start="08:30"><span class="time">8:30</span><span class="emoji">🍞</span><span class="activity">Ontbijten</span><span class="now">NU</span></div>
+<div class="entry drink" data-start="10:00"><span class="time">10:00</span><span class="emoji">☕</span><span class="activity">Koffie</span><span class="now">NU</span></div>
+<div class="entry meal" data-start="12:30"><span class="time">12:30</span><span class="emoji">🥪</span><span class="activity">Lunchen</span><span class="now">NU</span></div>
+<div class="entry nutrition" data-start="14:00"><span class="time">14:00</span><span class="emoji">🥛</span><span class="activity">Voedingsdrank</span><span class="now">NU</span></div>
+<div class="entry drink" data-start="15:00"><span class="time">15:00</span><span class="emoji">🫖</span><span class="activity">Thee</span><span class="now">NU</span></div>
+<div class="entry meal" data-start="17:30"><span class="time">17:30</span><span class="emoji">🍽️</span><span class="activity">Avondeten</span><span class="now">NU</span></div>
+<div class="entry drink" data-start="20:00"><span class="time">20:00</span><span class="emoji">☕</span><span class="activity">Koffie</span><span class="now">NU</span></div>
+<div class="entry nutrition" data-start="21:00"><span class="time">21:00</span><span class="emoji">🥛</span><span class="activity">Voedingsdrank</span><span class="now">NU</span></div>
+<div class="entry bed" data-start="22:00"><span class="time">22:00</span><span class="emoji">🌙</span><span class="activity">Bedtijd</span><span class="now">NU</span></div>
+</div><footer>📅 Is er vandaag iets anders? <strong>Kijk dan in de agenda.</strong></footer></main>
+<script>
+(function(){const rows=[...document.querySelectorAll('.entry')];const starts=rows.map(e=>{const [h,m]=e.dataset.start.split(':').map(Number);return h*60+m});const days=['zondag','maandag','dinsdag','woensdag','donderdag','vrijdag','zaterdag'];const months=['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];function update(){const d=new Date();document.getElementById('day').textContent=`${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}`;document.getElementById('clock').textContent=d.toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'});const minutes=d.getHours()*60+d.getMinutes();let current=-1;for(let i=0;i<starts.length;i++){if(minutes>=starts[i])current=i}rows.forEach((e,i)=>{e.classList.toggle('active',i===current);if(i===current)e.setAttribute('aria-current','step');else e.removeAttribute('aria-current')})}update();setInterval(update,10000);document.addEventListener('visibilitychange',update)})();
+</script>
+<!-- Herlaad elke 60 seconden de nieuwste gepubliceerde versie. -->
+<script>
+(function () {
+  function reloadLatest() {
+    if (document.visibilityState !== 'visible') return;
+    const url = new URL(window.location.href);
+    url.searchParams.set('_ververs', Date.now().toString());
+    window.location.replace(url.toString());
+  }
+  setInterval(reloadLatest, 60 * 1000);
+})();
+</script>
+</body></html>
